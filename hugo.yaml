@@ -114,7 +114,7 @@ params:
     iconHeight: 30
 
   assets:
-    favicon: "http://localhost:1313/img/favicons/logo.png"
+    favicon: "https://cybern1nja9.github.io/img/favicons/logo.png"
     theme_color: "#ffffff"
 
   cover:
