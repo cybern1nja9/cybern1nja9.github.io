@@ -1,0 +1,150 @@
+baseURL:
+languageCode: en-us
+title: cybern1nja9
+theme: ["PaperMod"]
+#copyright: "© [cybern1nja9 | 2025](https://cybern1nja9.github.io.com/)"
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+mainsections: ["blogs"]
+
+minify:
+  disableXML: true
+
+pagination:
+  pagerSize: 5
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 1
+    - name: Whoami
+      url: /whoami
+      weight: 3
+    - name: Blogs
+      url: /blogs/
+      weight: 5
+    - name: Search
+      url: search/
+      weight: 10
+    - name: Tags
+      url: tags/
+    - name: Archive
+      url: archives/
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+  params:
+  env: production
+  description: ""
+  author: ["ABHISHEK"]
+  keywords: ["cybersecurity","infosec","information-security","network-security","application-security","cloud-security","endpoint-security","data-protection","data-privacy","encryption","cryptography","asymmetric-cryptography","symmetric-cryptography","penetration-testing","ethical-hacking","red-team","blue-team","purple-team","incident-response","digital-forensics","malware-analysis","reverse-engineering","threat-hunting","threat-intelligence","vulnerability-management","risk-assessment","risk-management","security-audit","access-control","identity-management","identity-and-access-management","iam","multi-factor-authentication","two-factor-authentication","zero-trust","zero-trust-architecture","firewalls","next-generation-firewalls","intrusion-detection","intrusion-prevention","intrusion-detection-systems","intrusion-prevention-systems","security-information-and-event-management","siem","phishing","spear-phishing","whaling","smishing","vishing","social-engineering","ransomware","malware","spyware","adware","rootkits","botnets","denial-of-service","dos","distributed-denial-of-service","ddos","brute-force-attacks","password-attacks","dictionary-attacks","keyloggers","man-in-the-middle","mitm","session-hijacking","cross-site-scripting","xss","sql-injection","code-injection","command-injection","csrf","cross-site-request-forgery","security-awareness-training","security-compliance","gdpr","hipaa","pci-dss","nist","iso-27001","iso-27002","fisma","ferpa","sox","bug-bounty","vulnerability-disclosure","secure-coding","security-by-design","security-policies","security-operations","security-operations-center","soc","privilege-escalation","patch-management","supply-chain-security","api-security","iot-security","mobile-security","mobile-app-security","android-security","ios-security","wireless-security","wi-fi-security","bluetooth-security","rfid-security","nfc-security","blockchain-security","cryptocurrency-security","smart-contract-security","ai-security","ml-security","machine-learning-security","deepfake-detection","quantum-cryptography","post-quantum-cryptography","zero-day","zero-day-exploits","sandboxing","honeypots","honeytokens","threat-modeling","cyber-espionage","cyber-warfare","cyber-terrorism","cybercrime","cyber-law","cyber-ethics","digital-rights-management","drm","secure-software-development-lifecycle","ssdcl","devsecops","security-testing","fuzz-testing","dynamic-application-security-testing","dast","static-application-security-testing","sast","interactive-application-security-testing","iast","network-monitoring","packet-sniffing","protocol-analysis","forensic-analysis","disk-forensics","memory-forensics","log-analysis","threat-feeds","threat-intel-platforms","security-orchestration","security-automation","soar","biometric-security","facial-recognition-security","fingerprint-security","voice-recognition-security","continuous-authentication","insider-threats","external-threats","business-continuity","disaster-recovery","backup-security","data-loss-prevention","dlp","endpoint-detection-and-response","edr","managed-detection-and-response","mdr","extended-detection-and-response","xdr","phishing-simulation","cybersecurity-training","security-certifications","cissp","ceh","oscp","security-clearance","threat-landscape","vulnerability-assessment","penetration-test-reports","cyber-insurance","email-security","spam-filtering","web-security","secure-web-gateways","application-firewalls","waf","browser-security","content-security-policy","csp","network-segmentation","microsegmentation","vpn","secure-vpn","tor","dark-web-monitoring","open-source-intelligence","osint","cybersecurity-frameworks","nist-cybersecurity-framework","cis-benchmarks","cis-controls","security-metrics","cybersecurity-governance","security-strategy","threat-risk-analysis","phishing-awareness","cyber-hygiene","security-patching","vulnerability-scanning","asset-inventory","security-posture","cybersecurity-investigation","security-tooling","security-playbooks","remote-work-security","telework-security","home-network-security","password-security","password-managers","credential-stuffing","session-security","token-security","security-logging","audit-logging","data-classification","confidentiality","integrity","availability","cia-triad"]
+  keywords: ["cybersecurity","infosec","information-security","network-security","application-security","cloud-security","endpoint-security","data-protection","data-privacy","encryption","cryptography","asymmetric-cryptography","symmetric-cryptography","penetration-testing","ethical-hacking","red-team","blue-team","purple-team","incident-response","digital-forensics","malware-analysis","reverse-engineering","threat-hunting","threat-intelligence","vulnerability-management","risk-assessment","risk-management","security-audit","access-control","identity-management","identity-and-access-management","iam","multi-factor-authentication","two-factor-authentication","zero-trust","zero-trust-architecture","firewalls","next-generation-firewalls","intrusion-detection","intrusion-prevention","intrusion-detection-systems","intrusion-prevention-systems","security-information-and-event-management","siem","phishing","spear-phishing","whaling","smishing","vishing","social-engineering","ransomware","malware","spyware","adware","rootkits","botnets","denial-of-service","dos","distributed-denial-of-service","ddos","brute-force-attacks","password-attacks","dictionary-attacks","keyloggers","man-in-the-middle","mitm","session-hijacking","cross-site-scripting","xss","sql-injection","code-injection","command-injection","csrf","cross-site-request-forgery","security-awareness-training","security-compliance","gdpr","hipaa","pci-dss","nist","iso-27001","iso-27002","fisma","ferpa","sox","bug-bounty","vulnerability-disclosure","secure-coding","security-by-design","security-policies","security-operations","security-operations-center","soc","privilege-escalation","patch-management","supply-chain-security","api-security","iot-security","mobile-security","mobile-app-security","android-security","ios-security","wireless-security","wi-fi-security","bluetooth-security","rfid-security","nfc-security","blockchain-security","cryptocurrency-security","smart-contract-security","ai-security","ml-security","machine-learning-security","deepfake-detection","quantum-cryptography","post-quantum-cryptography","zero-day","zero-day-exploits","sandboxing","honeypots","honeytokens","threat-modeling","cyber-espionage","cyber-warfare","cyber-terrorism","cybercrime","cyber-law","cyber-ethics","digital-rights-management","drm","secure-software-development-lifecycle","ssdcl","devsecops","security-testing","fuzz-testing","dynamic-application-security-testing","dast","static-application-security-testing","sast","interactive-application-security-testing","iast","network-monitoring","packet-sniffing","protocol-analysis","forensic-analysis","disk-forensics","memory-forensics","log-analysis","threat-feeds","threat-intel-platforms","security-orchestration","security-automation","soar","biometric-security","facial-recognition-security","fingerprint-security","voice-recognition-security","continuous-authentication","insider-threats","external-threats","business-continuity","disaster-recovery","backup-security","data-loss-prevention","dlp","endpoint-detection-and-response","edr","managed-detection-and-response","mdr","extended-detection-and-response","xdr","phishing-simulation","cybersecurity-training","security-certifications","cissp","ceh","oscp","security-clearance","threat-landscape","vulnerability-assessment","penetration-test-reports","cyber-insurance","email-security","spam-filtering","web-security","secure-web-gateways","application-firewalls","waf","browser-security","content-security-policy","csp","network-segmentation","microsegmentation","vpn","secure-vpn","tor","dark-web-monitoring","open-source-intelligence","osint","cybersecurity-frameworks","nist-cybersecurity-framework","cis-benchmarks","cis-controls","security-metrics","cybersecurity-governance","security-strategy","threat-risk-analysis","phishing-awareness","cyber-hygiene","security-patching","vulnerability-scanning","asset-inventory","security-posture","cybersecurity-investigation","security-tooling","security-playbooks","remote-work-security","telework-security","home-network-security","password-security","password-managers","credential-stuffing","session-security","token-security","security-logging","audit-logging","data-classification","confidentiality","integrity","availability","cia-triad"]
+  
+  defaultTheme: auto
+  disableThemeToggle: false
+  ShowShareButtons: true
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: True
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowWordCount: False
+  comments: False
+
+params:
+  profileMode:
+    enabled: true
+    title: "Hi, my name is ABHISHEK (aka cybern1nja9)🥷🏻"
+    subtitle: "A cybersecurity consultant, curious hacker, and a goal chaser."
+    imageUrl: "img/home.jpg"
+    imageTitle: "hacker"
+    imageWidth: 256 # custom size
+    imageHeight: 256 # custom size
+    
+    buttons:
+    - name: Certifications
+      url: /whoami/#certifications-and-resume
+    - name: Blogs
+      url: /blogs
+
+  socialIcons:
+    - name: linkedin
+      title: "LinkedIn"
+      url: "https://www.linkedin.com/in/abhishekrajput19/"
+    - name: github
+      title: "Github"
+      url: "https://github.com/cybern1nja9"
+    - name: X
+      title: "X"
+      url: ""
+    - name: hackthebox
+      title: "HackTheBox"
+      #url: ""
+    - name: tryhackme
+      title: "Tryhackme"
+      url: "https://tryhackme.com/p/cybern1nja9"
+    #- name: other
+    #  title: "other"
+    #  url: ""
+
+  label:
+    text: "cybern1nja9"
+    icon: "/img/favicons/logo.png"
+    iconHeight: 30
+
+  assets:
+    favicon: "http://localhost:1313/img/favicons/logo.png"
+    theme_color: "#ffffff"
+
+  cover:
+    linkFullImages: true
+    responsiveImages: true
+    hiddenInList: false
+    hiddenInSingle: false
+
+  analytics:
+    google:
+      SiteVerificationTag: "YOUR-GOOGLE-TAG"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10
+    keys: ["title", "permalink", "summary", "content"]
+
+  services:
+    instagram:
+      disableInlineCSS: true
+    x:
+      disableInlineCSS: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false

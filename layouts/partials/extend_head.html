@@ -1,0 +1,91 @@
+<!-- Typing effect for home page title: types once, then leaves a blinking cursor -->
+<style>
+	/* Caret blink */
+			/* Terminal-style block cursor blink */
+			@keyframes caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+			.typing-cursor {
+				display: inline-block;
+				width: 0.6ch;            /* width of one character cell */
+				height: 1em;            /* slightly taller than text line */
+				background-color:  #3FE019;
+				margin-left: 0.15ch;      /* small gap, like terminals */
+				animation: caret-blink 2.1s steps(1) infinite;
+				vertical-align: -0.15em;  /* align with text baseline */
+				/*border-radius: 2px;*/       /* subtle rounding for hi-dpi */
+				pointer-events: none;
+			}
+
+	/* Avoid layout jump during setup */
+	.typing-initial-hide { visibility: hidden; }
+
+	/* Respect reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.typing-cursor { animation: none; }
+	}
+</style>
+<script>
+	(function () {
+		function setupTyping(h1) {
+			if (!h1) return;
+
+			// Skip if already initialized
+			if (h1.dataset.typed === "1") return;
+			h1.dataset.typed = "1";
+
+			var full = (h1.textContent || "").trim();
+			if (!full) return;
+
+			// Respect reduced motion: just show the title and a blinking caret
+			var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			// Prepare structure
+			var textSpan = document.createElement('span');
+			var cursorSpan = document.createElement('span');
+			cursorSpan.className = 'typing-cursor';
+			cursorSpan.textContent = '';
+
+			// Hide original quickly to avoid flicker until we replace
+			h1.classList.add('typing-initial-hide');
+			h1.textContent = '';
+			h1.appendChild(textSpan);
+			h1.appendChild(cursorSpan);
+			h1.classList.remove('typing-initial-hide');
+
+			if (reduced) {
+				textSpan.textContent = full; // no typing animation
+				return;
+			}
+
+			var i = 0;
+			var speed = 70; // ms per character
+
+			function typeNext() {
+				if (i < full.length) {
+					textSpan.textContent += full.charAt(i);
+					i += 1;
+					setTimeout(typeNext, speed);
+				} else {
+					// done typing; cursor keeps blinking via CSS
+				}
+			}
+
+			// Kick off typing on next frame to ensure DOM is ready
+			setTimeout(typeNext, 50);
+		}
+
+		// Run on DOM ready
+			function init() {
+				var target =
+					document.querySelector('article.first-entry.home-info .entry-header h1') ||
+					document.querySelector('.profile .profile_inner > h1');
+				setupTyping(target);
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', init);
+			} else {
+				init();
+			}
+	})();
+</script>

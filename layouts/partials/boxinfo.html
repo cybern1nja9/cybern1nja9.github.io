@@ -1,0 +1,52 @@
+{{/* Box Info panel for write-ups */}}
+{{- $b := .Params.boxinfo -}}
+{{- $has := false -}}
+{{- if $b -}}
+  {{- $has = or $has $b.name -}}
+  {{- $has = or $has $b.os -}}
+  {{- $has = or $has $b.difficulty -}}
+  {{- $has = or $has $b.ip -}}
+  {{- $has = or $has (and $b.creator (or $b.creator.name $b.creator.url)) -}}
+  {{- $has = or $has $b.image -}}
+{{- end -}}
+
+{{- if $has -}}
+<fieldset class="box-info">
+  <legend>Box Info</legend>
+  <div class="box-info__inner">
+    <!-- details list -->
+    <ul>
+      {{- with $b.name }}
+        <li><span class="label">Name:</span>
+          {{- with $b.name_url -}}<a href="{{ . }}" rel="noopener" target="_blank">{{ $b.name }}</a>{{- else -}}{{ $b.name }}{{- end -}}
+        </li>
+      {{- end -}}
+
+      {{- with $b.os }}
+        <li><span class="label">OS:</span> <code>{{ . }}</code></li>
+      {{- end -}}
+
+      {{- with $b.difficulty }}
+        <li><span class="label">Difficulty:</span> <code>{{ . }}</code></li>
+      {{- end -}}
+
+      {{- with $b.ip }}
+        <li><span class="label">IP:</span> <code>{{ . }}</code></li>
+      {{- end -}}
+
+      {{- with $b.creator }}
+        <li><span class="label">Machine Creator:</span>
+          {{- if .url -}}<a href="{{ .url }}" rel="noopener" target="_blank">{{ .name | default .url }}</a>{{- else -}}{{ .name }}{{- end -}}
+        </li>
+      {{- end -}}
+    </ul>
+
+    <!-- optional image on the right -->
+    {{- with $b.image }}
+      <div class="box-info__media">
+        <img src="{{ . | absURL }}" alt="{{ $b.image_alt | default (printf "%s box image" ($b.name | default "Box")) }}" {{ with $b.image_width }}width="{{ . }}"{{ end }} {{ with $b.image_height }}height="{{ . }}"{{ end }} loading="lazy" />
+      </div>
+    {{- end }}
+  </div>
+</fieldset>
+{{- end -}}

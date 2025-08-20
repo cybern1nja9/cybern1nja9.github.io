@@ -1,0 +1,55 @@
+/* Inline code chips */
+.post-content :not(pre) > code {
+    margin: 0;
+    padding: 0.15em 0.4em;
+    border-radius: 6px;
+    border: 1px solid;
+    font-size: 0.95em;
+}
+
+/* Light mode: higher contrast text and subtle background */
+body:not(.dark) .post-content :not(pre) > code {
+    color: #4d3b00;           /* dark amber for readability on light bg */
+    background-color: #f5f5f7;
+    border-color: #e5e7eb;
+}
+
+/* Dark mode: keep the amber on darker chip */
+body.dark .post-content :not(pre) > code {
+    color: #e6c07b;
+    background-color: var(--code-bg);
+    border-color: #2f3136;
+}
+
+/* Links */
+.post-content a {
+    color: #74b9ff;
+}
+
+/* About page layout */
+.about-header {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0 1.5rem;
+}
+/* If there is no avatar element, make the single child span full width */
+.about-header > :only-child { grid-column: 1 / -1; }
+
+.about-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0,0,0,0.08);
+}
+body.dark .about-avatar {
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* Education page (shortcodes deprecated) - styles removed */
+/* Previously: .edu-intro, .edu-timeline, .edu-card, .edu-header, .edu-meta, .edu-logo, .edu-points, .edu-note */
+
+/* Keep only badge icon sizing for Markdown table */
+img.edu-badge { width: 40px; height: 40px; object-fit: contain; vertical-align: middle; border-radius: 6px; }
