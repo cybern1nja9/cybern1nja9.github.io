@@ -6,7 +6,7 @@ description: A writeup for Damn-Vulnerable-RESTaurant-API-Game
 summary: This writeup details covers all the vulnerabilities and exploitation that are there in all six levels. 
 ShowToc: true
 TocOpen: false
-date:   2025-20-09
+date: 2025-20-09
 tags:   [API, API Hacking, OWASP Top 10 API]
 boxinfo:
 image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/5837ac5e28291146a9f2a8a015540c28.png
