@@ -1,3 +1,21 @@
+---
+author: ["Bhav Goyal"]
+series: ["HackTheBox"]
+title: "HackTheBox: Active"
+description: A writeup for HackTheBox Active
+summary: This writeup details the enumeration and exploitation of Active Directory services on HackTheBox Active, including Kerberos, SMB, and privilege escalation techniques.
+ShowToc: true
+TocOpen: false
+date:   2024-10-03
+tags:   [HackTheBox,htb]
+boxinfo:
+  name: "Active"
+  name_url: "https://www.hackthebox.com/machines/Active"
+  os: "Windows"
+  difficulty: "Easy"
+  ip: "10.10.10.100"
+  image: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/avatars/5837ac5e28291146a9f2a8a015540c28.png
+---
 
 
 #LabSetup 
