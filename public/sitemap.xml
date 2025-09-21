@@ -35,6 +35,8 @@
     <loc>//localhost:1313/blogs/writeups/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>//localhost:1313/blogs/writeups/others/test/</loc>
+  </url><url>
     <loc>//localhost:1313/whoami/</loc>
   </url><url>
     <loc>//localhost:1313/archives/</loc>
