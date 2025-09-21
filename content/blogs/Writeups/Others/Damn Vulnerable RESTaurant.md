@@ -11,6 +11,7 @@ tags:   [API,API Hacking,OWASP Top 10 API]
 boxinfo:
  image: https://raw.githubusercontent.com/GangGreenTemperTatum/Damn-Vulnerable-RESTaurant-API-Game/main/app/static/img/mad-chef-circle-text.png
 ---
+Note - I've only looked at the attacking portion; I haven't talked about patching the vulnerabilities, but you can explore fixing the vulnerabilities.  
 
 ## Lab Setup 
 
@@ -84,7 +85,7 @@ You will find the info disclosure in response — "**x-powered-by: Python 3.10, 
 ![Test](/img/posts/20250909192749.png)
 	
 
-## Level 1 — Unrestricted Menu Item Deletion or (BFLA)**
+## Level 1 — Unrestricted Menu Item Deletion or (BFLA)
 
 ![Test](/img/posts/20250909193350.png)
 
@@ -113,7 +114,7 @@ Checking, if the id: 17 got successfully deleted!? Yes, it is -
 *It's a BFLA finding, since we as an attacker has the **role: Customer** (low privileged account) and we were able to perform **unauthorized** + **high-level privileged function.***
 
 
-## Level 2** — **BOLA (Broken Object Level Authorization)**
+## Level 2 — BOLA (Broken Object Level Authorization)
 
 We'll perform "A-B" testing...so create two accounts.
 
@@ -167,7 +168,7 @@ Profile info updated for userB by userA!!
 We see that we found one valid existing user called “**chef**”, which seems interesting (as it might have some elevated privileges.
 ![Test](/img/posts/20250831183155.png)
 
-## Level 3 - Privilege Escalation** (via "**BOPLA**"/**Broken Object Property Level Authorization**)
+## Level 3 - Privilege Escalation (via "BOPLA"/Broken Object Property Level Authorization)
 
 ![Test](/img/posts/20250916222456.png)
 
@@ -188,7 +189,7 @@ We see that our role got changed to “Chef” as we included unintended propert
 ![Test](/img/posts/20250831191215.png)
 
 
-## Level 4 - Server Side Request Forgery**
+## Level 4 - Server Side Request Forgery
 
 In the API endpoint PUT /menu, you'll see an object "image_URL". 
 So, let's test this object by inserting an external URL.
@@ -230,7 +231,7 @@ Verifying it!
 ![Test](/img/posts/20250920182253.png)
 
 
-## Level 5 — RCE**
+## Level 5 — RCE
 
 ![Test](/img/posts/20250920182652.png)
 

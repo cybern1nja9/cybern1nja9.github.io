@@ -253,22 +253,23 @@
                 <li>
                     <a href="#level-0--information-disclosure" aria-label="Level 0 — Information disclosure">Level 0 — Information disclosure</a></li>
                 <li>
-                    <a href="#level-1--unrestricted-menu-item-deletion-or-bfla" aria-label="Level 1 — Unrestricted Menu Item Deletion or (BFLA)**">Level 1 — Unrestricted Menu Item Deletion or (BFLA)**</a></li>
+                    <a href="#level-1--unrestricted-menu-item-deletion-or-bfla" aria-label="Level 1 — Unrestricted Menu Item Deletion or (BFLA)">Level 1 — Unrestricted Menu Item Deletion or (BFLA)</a></li>
                 <li>
-                    <a href="#level-2--bola-broken-object-level-authorization" aria-label="Level 2** — BOLA (Broken Object Level Authorization)">Level 2** — BOLA (Broken Object Level Authorization)</a></li>
+                    <a href="#level-2--bola-broken-object-level-authorization" aria-label="Level 2 — BOLA (Broken Object Level Authorization)">Level 2 — BOLA (Broken Object Level Authorization)</a></li>
                 <li>
-                    <a href="#level-3---privilege-escalation-via-boplabroken-object-property-level-authorization" aria-label="Level 3 - Privilege Escalation** (via &ldquo;BOPLA&rdquo;/Broken Object Property Level Authorization)">Level 3 - Privilege Escalation** (via &ldquo;BOPLA&rdquo;/Broken Object Property Level Authorization)</a></li>
+                    <a href="#level-3---privilege-escalation-via-boplabroken-object-property-level-authorization" aria-label="Level 3 - Privilege Escalation (via &ldquo;BOPLA&rdquo;/Broken Object Property Level Authorization)">Level 3 - Privilege Escalation (via &ldquo;BOPLA&rdquo;/Broken Object Property Level Authorization)</a></li>
                 <li>
-                    <a href="#level-4---server-side-request-forgery" aria-label="Level 4 - Server Side Request Forgery**">Level 4 - Server Side Request Forgery**</a></li>
+                    <a href="#level-4---server-side-request-forgery" aria-label="Level 4 - Server Side Request Forgery">Level 4 - Server Side Request Forgery</a></li>
                 <li>
-                    <a href="#level-5--rce" aria-label="Level 5 — RCE**">Level 5 — RCE**</a>
+                    <a href="#level-5--rce" aria-label="Level 5 — RCE">Level 5 — RCE</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><h2 id="lab-setup">Lab Setup<a hidden class="anchor" aria-hidden="true" href="#lab-setup">#</a></h2>
+  <div class="post-content"><p>Note - I&rsquo;ve only looked at the attacking portion; I haven&rsquo;t talked about patching the vulnerabilities, but you can explore fixing the vulnerabilities.</p>
+<h2 id="lab-setup">Lab Setup<a hidden class="anchor" aria-hidden="true" href="#lab-setup">#</a></h2>
 <ol>
 <li>Install <a href="https://www.docker.com/get-started/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose V2</a>.</li>
 <li>For Windows, (make sure we&rsquo;ve installed &ldquo;git&rdquo; for windows)
@@ -316,7 +317,7 @@ But, I&rsquo;ll use a Burp extension called <a href="https://github.com/nerdygen
 <p>Send a <strong>GET</strong> request to <strong>/healthcheck</strong></p>
 <p>You will find the info disclosure in response — &ldquo;<strong>x-powered-by: Python 3.10, FastAPI ^0.103.0</strong>&rdquo;, which will be useful to plan and carry out further attack.</p>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250909192749.png"></p>
-<h2 id="level-1--unrestricted-menu-item-deletion-or-bfla">Level 1 — Unrestricted Menu Item Deletion or (BFLA)**<a hidden class="anchor" aria-hidden="true" href="#level-1--unrestricted-menu-item-deletion-or-bfla">#</a></h2>
+<h2 id="level-1--unrestricted-menu-item-deletion-or-bfla">Level 1 — Unrestricted Menu Item Deletion or (BFLA)<a hidden class="anchor" aria-hidden="true" href="#level-1--unrestricted-menu-item-deletion-or-bfla">#</a></h2>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250909193350.png"></p>
 <p><strong>Attack -</strong></p>
 <p>Get the Auth Token for our attacker&rsquo;s account (<strong>userA</strong>) via POST /token endpoint
@@ -331,7 +332,7 @@ But, I&rsquo;ll use a Burp extension called <a href="https://github.com/nerdygen
 <p>Checking, if the id: 17 got successfully deleted!? Yes, it is -
 <img alt="Test" loading="lazy" src="/img/posts/20250914210539.png">
 <em>It&rsquo;s a BFLA finding, since we as an attacker has the <strong>role: Customer</strong> (low privileged account) and we were able to perform <strong>unauthorized</strong> + <strong>high-level privileged function.</strong></em></p>
-<h2 id="level-2--bola-broken-object-level-authorization">Level 2** — <strong>BOLA (Broken Object Level Authorization)</strong><a hidden class="anchor" aria-hidden="true" href="#level-2--bola-broken-object-level-authorization">#</a></h2>
+<h2 id="level-2--bola-broken-object-level-authorization">Level 2 — BOLA (Broken Object Level Authorization)<a hidden class="anchor" aria-hidden="true" href="#level-2--bola-broken-object-level-authorization">#</a></h2>
 <p>We&rsquo;ll perform &ldquo;A-B&rdquo; testing&hellip;so create two accounts.</p>
 <p>One will act as an attacker&rsquo;s account and the other one will be the victim&rsquo;s account.</p>
 <p>Attacker - UserA
@@ -369,7 +370,7 @@ Profile info updated for userB by userA!!</p>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250831183013.png"></p>
 <p>We see that we found one valid existing user called “<strong>chef</strong>”, which seems interesting (as it might have some elevated privileges.
 <img alt="Test" loading="lazy" src="/img/posts/20250831183155.png"></p>
-<h2 id="level-3---privilege-escalation-via-boplabroken-object-property-level-authorization">Level 3 - Privilege Escalation** (via &ldquo;<strong>BOPLA</strong>&rdquo;/<strong>Broken Object Property Level Authorization</strong>)<a hidden class="anchor" aria-hidden="true" href="#level-3---privilege-escalation-via-boplabroken-object-property-level-authorization">#</a></h2>
+<h2 id="level-3---privilege-escalation-via-boplabroken-object-property-level-authorization">Level 3 - Privilege Escalation (via &ldquo;BOPLA&rdquo;/Broken Object Property Level Authorization)<a hidden class="anchor" aria-hidden="true" href="#level-3---privilege-escalation-via-boplabroken-object-property-level-authorization">#</a></h2>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250916222456.png"></p>
 <p>The API endpoint PATCH /profile allows user to update their profile info.</p>
 <p>As per API doc — The request does not contain “role” value. We can try to add the “role” property in the request and see if we can see a successful response.</p>
@@ -379,7 +380,7 @@ Profile info updated for userB by userA!!</p>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250831190308.png"></p>
 <p>We see that our role got changed to “Chef” as we included unintended property &ldquo;<strong>role</strong>&rdquo; in our request.
 <img alt="Test" loading="lazy" src="/img/posts/20250831191215.png"></p>
-<h2 id="level-4---server-side-request-forgery">Level 4 - Server Side Request Forgery**<a hidden class="anchor" aria-hidden="true" href="#level-4---server-side-request-forgery">#</a></h2>
+<h2 id="level-4---server-side-request-forgery">Level 4 - Server Side Request Forgery<a hidden class="anchor" aria-hidden="true" href="#level-4---server-side-request-forgery">#</a></h2>
 <p>In the API endpoint PUT /menu, you&rsquo;ll see an object &ldquo;image_URL&rdquo;.
 So, let&rsquo;s test this object by inserting an external URL.</p>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250916224017.png"></p>
@@ -405,7 +406,7 @@ Now, we&rsquo;ll authenticate with admin cred to get the access token.</p>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250920182149.png"></p>
 <p>Verifying it!
 <img alt="Test" loading="lazy" src="/img/posts/20250920182253.png"></p>
-<h2 id="level-5--rce">Level 5 — RCE**<a hidden class="anchor" aria-hidden="true" href="#level-5--rce">#</a></h2>
+<h2 id="level-5--rce">Level 5 — RCE<a hidden class="anchor" aria-hidden="true" href="#level-5--rce">#</a></h2>
 <p><img alt="Test" loading="lazy" src="/img/posts/20250920182652.png"></p>
 <p>Only user with role “Chef” is authorized to send the request to the endpoint
 <strong>GET /admin/stats/disk?parameters=</strong></p>
