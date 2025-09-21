@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Damn-Vulnerable-RESTaurant-API-Game | cybern1nja9</title>
+<meta name="keywords" content="API, API Hacking, OWASP Top 10 API">
+<meta name="description" content="A writeup for Damn-Vulnerable-RESTaurant-API-Game">
+<meta name="author" content="Abhishekl">
+<link rel="canonical" href="//localhost:1313/blogs/writeups/others/damn-vulnerable-restaurant/">
+<meta name="google-site-verification" content="YOUR-GOOGLE-TAG">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.850c671f4244218f4e9d88bae99aacd3f5881280041a7f1dcd02f1125f694990.css" integrity="sha256-hQxnH0JEIY9OnYi66Zqs0/WIEoAEGn8dzQLxEl9pSZA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://cybern1nja9.github.io/img/favicons/logo.png">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#ffffff">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/blogs/writeups/others/damn-vulnerable-restaurant/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<style>
+	 
+			 
+			@keyframes caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+			.typing-cursor {
+				display: inline-block;
+				width: 0.6ch;             
+				height: 1em;             
+				background-color:  #3FE019;
+				margin-left: 0.15ch;       
+				animation: caret-blink 2.1s steps(1) infinite;
+				vertical-align: -0.15em;   
+				         
+				pointer-events: none;
+			}
+
+	 
+	.typing-initial-hide { visibility: hidden; }
+
+	 
+	@media (prefers-reduced-motion: reduce) {
+		.typing-cursor { animation: none; }
+	}
+</style>
+<script>
+	(function () {
+		function setupTyping(h1) {
+			if (!h1) return;
+
+			
+			if (h1.dataset.typed === "1") return;
+			h1.dataset.typed = "1";
+
+			var full = (h1.textContent || "").trim();
+			if (!full) return;
+
+			
+			var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			
+			var textSpan = document.createElement('span');
+			var cursorSpan = document.createElement('span');
+			cursorSpan.className = 'typing-cursor';
+			cursorSpan.textContent = '';
+
+			
+			h1.classList.add('typing-initial-hide');
+			h1.textContent = '';
+			h1.appendChild(textSpan);
+			h1.appendChild(cursorSpan);
+			h1.classList.remove('typing-initial-hide');
+
+			if (reduced) {
+				textSpan.textContent = full; 
+				return;
+			}
+
+			var i = 0;
+			var speed = 70; 
+
+			function typeNext() {
+				if (i < full.length) {
+					textSpan.textContent += full.charAt(i);
+					i += 1;
+					setTimeout(typeNext, speed);
+				} else {
+					
+				}
+			}
+
+			
+			setTimeout(typeNext, 50);
+		}
+
+		
+			function init() {
+				var target =
+					document.querySelector('article.first-entry.home-info .entry-header h1') ||
+					document.querySelector('.profile .profile_inner > h1');
+				setupTyping(target);
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', init);
+			} else {
+				init();
+			}
+	})();
+</script>
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="cybern1nja9 (Alt + H)">
+                <img src="//localhost:1313/img/favicons/logo.png" alt="" aria-label="logo"
+                    height="30">cybern1nja9</a>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/whoami" title="Whoami">
+                    <span>Whoami</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/blogs/" title="Blogs">
+                    <span>Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                 </svg>
+                </button>
+             </li>
+    </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Damn-Vulnerable-RESTaurant-API-Game
+    </h1>
+    <div class="post-description">
+      A writeup for Damn-Vulnerable-RESTaurant-API-Game
+    </div>
+    <div class="post-meta"><span title='2024-10-03 00:00:00 +0000 UTC'>October 3, 2024</span>&nbsp;·&nbsp;Abhishekl
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#imgposts20250812222852png" aria-label="(img/posts/20250812222852.png)">(img/posts/20250812222852.png)</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>#LabSetup</p>
+<ol>
+<li>Install <a href="https://www.docker.com/get-started/">Docker</a> and <a href="https://docs.docker.com/compose/install/">Docker Compose V2</a>.</li>
+<li>For Windows, (make sure we&rsquo;ve installed &ldquo;git&rdquo; for windows)
+Open CMD or PowerShell as administrator</li>
+</ol>
+<pre tabindex="0"><code>git clone https://github.com/theowni/Damn-Vulnerable-RESTaurant-API-Game.git
+cd Damn-Vulnerable-RESTaurant-API-Game
+docker compose up -d
+</code></pre><ol start="3">
+<li>For Linux</li>
+</ol>
+<pre tabindex="0"><code>git clone https://github.com/theowni/Damn-Vulnerable-RESTaurant-API-Game.git
+cd Damn-Vulnerable-RESTaurant-API-Game
+./start_app.sh
+</code></pre><p>(img/posts/20250811190901.png)
+4. Now, visit http://127.0.0.1:8091/docs or http://&lt;your_ip&gt;:8091/docs
+(img/posts/20250811191214.png)</p>
+<p>(img/posts/20250811191048.png)</p>
+<p><strong>Setup Done!</strong></p>
+<hr>
+<p><strong>-Tool setup</strong></p>
+<p><strong>Option 1:</strong>
+You can send request via the OpenAPI (Swagger) found at http://127.0.0.1:8091/docs  to Burp Suite via proxy</p>
+<p><strong>Option 2:</strong>
+But, I&rsquo;ll use a Burp extension called <a href="https://github.com/nerdygenii/postman-burp-importer">https://github.com/nerdygenii/postman-burp-importer</a> as I wanted to try this tool out for my workflow.</p>
+<ul>
+<li>How to set up…</li>
+</ul>
+<ol>
+<li>Download the latest JAR from <a href="https://github.com/nerdygenii/postman-burp-importer/releases/latest">Releases</a></li>
+<li>In Burp Suite: <code>Extensions</code> → <code>Add</code> → Select the JAR file</li>
+<li>The “Postman Importer” tab will appear</li>
+<li>Getting the Postman Collection for the &ldquo;postman-burp-importer&rdquo; ext (since, we&rsquo;ve  <strong>OpenAPI Specification</strong> formerly Swagger .JSON file and <strong>not</strong> the Postman collection which is required for the extension)</li>
+</ol>
+<p>Download the API doc from http://127.0.0.1:8091/openapi.json &raquo; Open Postman &raquo; Import &raquo; Files &raquo;Select openapi.json &raquo; Open API 3.1 with a Post collection &raquo; Import</p>
+<p>(img/posts/20250812205710.png)</p>
+<p>Next, export the post collection&hellip;
+(img/posts/20250812205903.png)
+(img/posts/20250812210617.png)
+(img/posts/20250812210417.png)
+5. Open <strong>Burp Suite</strong> &raquo; go to  <strong>Extension</strong> &raquo; <strong>Postman Importer</strong> &raquo;  <strong>Browse</strong> &raquo; <strong>select</strong> &lt;<strong>your_exported-postman_collection.json</strong>&gt; &raquo; <strong>Import Collection.</strong></p>
+<p>(img/posts/20250812222724.png)</p>
+<p>All the API requests will get imported in the requester tabs</p>
+<h2 id="imgposts20250812222852png">(img/posts/20250812222852.png)<a hidden class="anchor" aria-hidden="true" href="#imgposts20250812222852png">#</a></h2>
+<p>Now, It&rsquo;s time for some API Hacking!</p>
+<p><strong>Level 0</strong> —
+(img/posts/20250909192232.png)</p>
+<p>Send a <strong>GET</strong> request to <strong>/healthcheck</strong></p>
+<p>You will find the info disclosure in response — &ldquo;<strong>x-powered-by: Python 3.10, FastAPI ^0.103.0</strong>&rdquo;, which will be useful to plan and carry out further attack.</p>
+<p>(img/posts/20250909192749.png)</p>
+<p><strong>Level 1 — Unrestricted Menu Item Deletion or (BFLA)</strong></p>
+<p>(img/posts/20250909193350.png)</p>
+<p><strong>Attack -</strong></p>
+<p>Get the Auth Token for our attacker&rsquo;s account (<strong>userA</strong>) via POST /token endpoint
+(img/posts/20250914210016.png)</p>
+<p>Verifying it&hellip;</p>
+<p>(img/posts/20250914210120.png)</p>
+<p>Send a request to GET /menu (to view list of menus).</p>
+<p>We&rsquo;ll try to <strong>delete</strong> ID: 17
+(img/posts/20250914210210.png)</p>
+<p>Now, send a DELETE request to /menu/{id}</p>
+<p>(img/posts/20250914210400.png)</p>
+<p>Checking, if the id: 17 got successfully deleted!? Yes, it is -
+(img/posts/20250914210539.png)
+<em>It&rsquo;s a BFLA finding, since we as an attacker has the <strong>role: Customer</strong> (low privileged account) and we were able to perform <strong>unauthorized</strong> + <strong>high-level privileged function.</strong></em></p>
+<p><strong>Level 2</strong> — <strong>BOLA (Broken Object Level Authorization)</strong></p>
+<p>We&rsquo;ll perform &ldquo;A-B&rdquo; testing&hellip;so create two accounts.</p>
+<p>One will act as an attacker&rsquo;s account and the other one will be the victim&rsquo;s account.</p>
+<p>Attacker - UserA
+(img/posts/20250916215909.png)</p>
+<p>Victim - UserB
+(img/posts/20250916215848.png)</p>
+<p>The PUT /profile allows user to edit their profile information</p>
+<p>Profile info updated for userA-
+(img/posts/20250916220325.png)</p>
+<p>*Attack —</p>
+<p>Now, let&rsquo;s change the profile info of userB.</p>
+<p>This can be achieved by changing the username value to userB (victims account) but using the auth token of userA (attacker)</p>
+<p>Original request</p>
+<p>(img/posts/20250916220748.png)</p>
+<p>Tampered request</p>
+<p>(img/posts/20250916220541.png)
+Profile info updated for userB by userA!!</p>
+<p><strong>To summarize this BOLA vulnerability -</strong></p>
+<ul>
+<li>
+<p>We are authenticated as <strong>userA</strong>.</p>
+</li>
+<li>
+<p>The API endpoint <code>/profile</code> is properly secured, meaning only authenticated users can access it. This prevents a “Broken Authentication” vulnerability, since unauthenticated users cannot access the function.</p>
+</li>
+<li>
+<p>However, the authorization check is flawed. Instead of verifying that the <code>username</code> in the request body matches the username associated with the authorization token, the API simply trusts the value provided in the request body.</p>
+</li>
+<li>
+<p>By changing the <code>username</code> from <strong>userA</strong> to <strong>userB</strong>, we were successfully able to modify an object (<strong>userB&rsquo;s profile</strong>) that we are not authorized to interact with.</p>
+</li>
+</ul>
+<p>We can also send the PUT /profile request to Intruder targeting &ldquo;username&rdquo; parameter for enumerating and attacking other user account using common username wordlist
+(img/posts/20250831181147.png)</p>
+<p>(img/posts/20250831183013.png)</p>
+<p>We see that we found one valid existing user called “<strong>chef</strong>”, which seems interesting (as it might have some elevated privileges.
+(img/posts/20250831183155.png)</p>
+<p><strong>Level 3 - Privilege Escalation</strong> (via &ldquo;<strong>BOPLA</strong>&rdquo;/<strong>Broken Object Property Level Authorization</strong>)</p>
+<p>(img/posts/20250916222456.png)</p>
+<p>The API endpoint PATCH /profile allows user to update their profile info.</p>
+<p>As per API doc — The request does not contain “role” value. We can try to add the “role” property in the request and see if we can see a successful response.</p>
+<p>(img/posts/20250831190640.png)</p>
+<p>(img/posts/20250831185147.png)</p>
+<p>Tampered Request -</p>
+<p>(img/posts/20250831190308.png)</p>
+<p>We see that our role got changed to “Chef” as we included unintended property &ldquo;<strong>role</strong>&rdquo; in our request.
+(img/posts/20250831191215.png)</p>
+<p><strong>Level 4 - Server Side Request Forgery</strong></p>
+<p>In the API endpoint PUT /menu, you&rsquo;ll see an object &ldquo;image_URL&rdquo;.
+So, let&rsquo;s test this object by inserting an external URL.</p>
+<p>(img/posts/20250916224017.png)</p>
+<p>I injected a custom created URL from webhook.site, let&rsquo;s see what happens!?</p>
+<p>(img/posts/20250916224106.png)
+(img/posts/20250916224125.png)</p>
+<p>Upon sending the request, we get a base64 encoded response.
+(img/posts/20250916224250.png)</p>
+<p>After base64 decoding, we get our content that we created. This means the api is fetching the content from the URL and displays it in base64 encoded format.
+(img/posts/20250916224331.png)
+This means that SSRF might be possible on this endpoint. Now, let exploit it further to make it impactful&hellip;</p>
+<p>After, reviewing the code under - &ldquo;<strong>/Damn-Vulnerable-Restaurant-API-Game/app/apis/admin/services</strong>” - it was found that there were two API routes -
+one of which was -</p>
+<ul>
+<li><strong>reset_chef_password_service.py</strong> - (responsible for generating and updating a new passwd for &ldquo;admin&rdquo; aka &ldquo;chef&rdquo;)</li>
+</ul>
+<p>(img/posts/20250920153705.png)</p>
+<p>After, replacing the previous URL with an internal URL i.e., <strong>http://localhost:8091/admin/reset-chef-password</strong></p>
+<p>(img/posts/20250920153349.png)</p>
+<p>(img/posts/20250920153841.png)
+That&rsquo;s how, we got the admin&rsquo;s password.
+Now, we&rsquo;ll authenticate with admin cred to get the access token.</p>
+<p>(img/posts/20250920182149.png)</p>
+<p>Verifying it!
+(img/posts/20250920182253.png)</p>
+<p><strong>Level 5 — RCE</strong></p>
+<p>(img/posts/20250920182652.png)</p>
+<p>Only user with role “Chef” is authorized to send the request to the endpoint
+<strong>GET /admin/stats/disk?parameters=</strong></p>
+<p>(img/posts/20250920184833.png)</p>
+<p>Hence, we will use the admin&rsquo;s token that we have with us&hellip;(got from previous level - SSRF)</p>
+<p>(img/posts/20250920185240.png)</p>
+<p>The above output looks like from the Linux command <strong>df</strong></p>
+<p><strong>Attack -</strong>
+Let&rsquo;s see if we can perform command injection -</p>
+<p>I tested out the following —&gt; <strong>; whoami</strong>  (<em>url-encoded</em>)</p>
+<p>(img/posts/20250920185653.png)
+In the output, we see the <strong>whoami</strong> command got executed successfully.</p>
+<p>Now, let&rsquo;s try to get a reverse shell&hellip;</p>
+<p>In order to inject right set of payload - We already have a useful piece of information that the backend language being used is <strong>Python3</strong> as shown in the below highlight screenshot.</p>
+<p>(img/posts/20250920191517.png)</p>
+<p>So, we will get the payload from <a href="https://www.revshells.com/">https://www.revshells.com/</a></p>
+<p>(img/posts/20250920203137.png)</p>
+<p>and will inject the payload as the value of &ldquo;**parameter=; &quot;</p>
+<p>This request will look something like this&hellip;</p>
+<p>(img/posts/20250920203558.png)</p>
+<p>Turning the net cat listener <strong>ON</strong>&hellip;</p>
+<p>(img/posts/20250920204327.png)</p>
+<p>Now, send the request!</p>
+<p>We successfully got the reverse shell.
+(img/posts/20250920204620.png)</p>
+<p>(img/posts/20250920204910.png)</p>
+<p>Now, let&rsquo;s try to get the root access.</p>
+<p>(img/posts/20250920204935.png)</p>
+<p>The user <code>app</code> can run the <code>/usr/bin/find</code> command as root (or any user) without providing a password.</p>
+<p>This means <code>find</code> can execute arbitrary commands using the <code>-exec</code> option, an attacker, or user could escalate privileges to root by running a command like:</p>
+<pre tabindex="0"><code>sudo find / -exec /bin/sh \; -quit
+</code></pre><p>(img/posts/20250920205743.png)</p>
+<p>Voilà! We got root access.</p>
+<p>(img/posts/20250920205911.png)</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="//localhost:1313/tags/api/">API</a></li>
+      <li><a href="//localhost:1313/tags/api-hacking/">API Hacking</a></li>
+      <li><a href="//localhost:1313/tags/owasp-top-10-api/">OWASP Top 10 API</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="//localhost:1313/">cybern1nja9</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
